@@ -15,7 +15,16 @@ use phpDocumentor\Reflection\PseudoTypes\List_;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //all listings
 Route::get('/', [ListingController::class, 'index'] );
+//show create listing form
+Route::get('/listings/create',[ListingController::class, 'create']);
+//store listing data
+Route::post('/listings',[ListingController::class, 'store']);
+
+
+
+///////////////////single listing should stay at the end//////////////////////////
 //single listing 
 Route::get('/listings/{listing}',[ListingController::class, 'show']);

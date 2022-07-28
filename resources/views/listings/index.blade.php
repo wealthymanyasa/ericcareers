@@ -16,4 +16,9 @@ class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4"
 <p>No listings</p>
 @endunless
 </div>
+{{--pagination {{ $collection->links() }} --}}
+<div class="mt-4 p-4">
+    {{$listings->links()}}
+</div>
+{{--pagination {{ $collection->links() }} --}}
 </x-layout>
