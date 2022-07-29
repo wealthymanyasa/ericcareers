@@ -3,13 +3,13 @@
                 >
                     <header class="text-center">
                         <h2 class="text-2xl font-bold uppercase mb-1">
-                            Create a Job Post
+                            Edit Job Post
                         </h2>
-                        <p class="mb-4">Post a job to find a developer</p>
                     </header>
 
-                    <form method="POST" action="/listings" enctype="multipart/form-data">
+                    <form method="POST" action="/listings/{{$listing->id}}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mb-6">
                             <label
                                 for="company"
@@ -20,8 +20,8 @@
                                 type="text"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 placeholder="Example: Microsoft, Google ,IBM" 
-                                name="company" value="{{old('company')}}"
-                            />
+                                name="company" value="{{$listing->company}}"
+                                />
                             @error('company')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
@@ -36,7 +36,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="title"
                                 placeholder="Example: Laravel Developer"
-                                value="{{old('title')}}"
+                                value="{{$listing->title}}"
                             />
                             @error('title')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -54,7 +54,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="location"
                                 placeholder="Example: Remote, Zimbabwe, United States, U.K, etc"
-                                value="{{old('location')}}"
+                                value="{{$listing->location}}"
                             />
                             @error('location')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -70,7 +70,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="email"
                                 placeholder="Example: hr@exampleco.com" 
-                                value="{{old('email')}}"
+                                value="{{$listing->email}}"
                             />
                             @error('email')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -89,8 +89,8 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="website"
                                placeholder="Example: https://exampleco.com" 
-                                value="{{old('website')}}"
-                            />
+                               value="{{$listing->website}}"
+                               />
                             @error('website')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
@@ -105,7 +105,7 @@
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="tags"
                                 placeholder="Example: Laravel, Backend, Postgres, etc"
-                                value="{{old('tags')}}"
+                                value="{{$listing->tags}}"
 
                             />
                             @error('tags')
@@ -121,11 +121,16 @@
                                 type="file"
                                 class="border border-gray-200 rounded p-2 w-full"
                                 name="logo"
-                             
-                            />
+                             />
+                             <img src="{{$listing->logo ? asset('storage/'. $listing->logo):
+                             asset('/images/no-image.png')
+          }}"
+                          
+                         />
                             @error('logo')
                             <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
+                            
                         </div>
 
                         <div class="mb-6">
@@ -141,7 +146,7 @@
                                 rows="10"
                                 placeholder="Include tasks, requirements, salary, etc"
                             >
-                            {{old('description')}}
+                            {{$listing->description}}
 
                         </textarea>
                             @error('description')
@@ -153,7 +158,7 @@
                             <button
                                 class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                             >
-                                Create Job
+                                Update Job
                             </button>
 
                             <a href="/" class="text-black ml-4"> Back </a>

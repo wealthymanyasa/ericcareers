@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Listing extends Model
 {
     use HasFactory;
 /////fillable properties
 
-   protected $fillable = ['title','company','location','website','email','logo','tags','description'];
+   protected $fillable = ['title','user_id','company','location','website','email','logo','tags','description'];
 
     //filter clistings
     public function scopeFilter($query, array $filters){
@@ -33,5 +34,10 @@ class Listing extends Model
                     ->orWhere('location', 'like','%'. request('search').'%');
 
                  }
+    }
+
+    //relationship of listing to user
+    public function user(){
+        return $this->BelongsTo(User::class, 'user_id');
     }
 }
