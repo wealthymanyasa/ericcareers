@@ -10,7 +10,7 @@
     >
         <img
             class="w-48 mr-6 mb-6"
-            src="{{$listing->logo ? asset('storage/'. $listing->logo):
+            src="{{$listing->logo ? asset('app/storage/'. $listing->logo):
                                     asset('/images/no-image.png')
                  }}"
 
