@@ -54,6 +54,7 @@
             "dont-discover": []
         }
     },
+    "post-install-cmd": [ "ln -sr storage/app/public public/storage" ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
