@@ -47,6 +47,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-install-cmd": [ 
+            "ln -sr storage/app/public public/storage" 
         ]
     },
     "extra": {
@@ -54,7 +57,7 @@
             "dont-discover": []
         }
     },
-    "post-install-cmd": [ "ln -sr storage/app/public public/storage" ],
+    
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
